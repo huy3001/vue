@@ -2,31 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vue Training</title>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <!-- styles file -->
+    <!-- bootstrap files -->
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <!-- styles files -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="app">
-        <p>{{message}}</p>
+    <div class="container">
+        <div id="myApp">
+            <h1>{{title}}</h1>
+
+            <first-app></first-app>
+
+            <hover-app></hover-app>
+
+            <condition-app></condition-app>
+
+            <loop-app></loop-app>
+        </div>
     </div>
 
-    <div id="hoverApp">
-        <p v-bind:title="message">Hover me in few seconds to see my title</p>
-    </div>
+    <script type="text/x-template" id="first-app-template">
+        <div class="firstApp">
+            <p>{{message}}</p>
+        </div>
+    </script>
 
-    <div id="conditionApp">
-        <p v-if="seen">Now you see me</p>
-    </div>
+    <script type="text/x-template" id="hover-app-template">
+        <div class="hoverApp">
+            <p :title="message">Hover me in few seconds to see my title</p>
+        </div>
+    </script>
 
-    <div id="loopApp">
-        <ul>
-            <li v-for="list in lists">{{list.text}}</li>
-        </ul>
-    </div>
+    <script type="text/x-template" id="condition-app-template">
+        <div class="conditionApp">
+            <p v-if="seen">Now you see me</p>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="loop-app-template">
+        <div class="loopApp">
+            <ul>
+                <li v-for="list in lists">{{list.text}}</li>
+            </ul>
+        </div>
+    </script>
 
     <!-- vue script file -->
     <script src="js/script.js"></script>

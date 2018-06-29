@@ -1,0 +1,11 @@
+/* Vue training styles */
+
+/* Vendor */
+@import "../bootstrap/scss/bootstrap";
+
+/* Utilities */
+@import "utilities/variables";
+@import "utilities/mixins";
+
+/* Layout */
+@import "layout/global";

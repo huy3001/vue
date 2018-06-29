@@ -2,40 +2,53 @@
  * Created by Nguyen Cong Huy on 4/16/2018.
  */
 
-/* The first app */
-var app = new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello world!'
+/* First app */
+Vue.component('first-app', {
+    template: '#first-app-template',
+    data: function() {
+        return {
+            message: 'Hello world!'
+        }
     }
 });
 
 /* Hover app */
-var hoverApp = new Vue({
-    el: '#hoverApp',
-    data: {
-        message: 'You hover on this page in ' + new Date().toLocaleString()
+Vue.component('hover-app', {
+    template: '#hover-app-template',
+    data: function() {
+        return {
+            message: 'You hover on this page in ' + new Date().toLocaleString()
+        }
     }
 });
 
-/* Conditional app */
-
-var conditionApp = new Vue ({
-    el: '#conditionApp',
-    data: {
-        seen: true
+/* Condition app */
+Vue.component('condition-app', {
+    template: '#condition-app-template',
+    data: function() {
+        return {
+            seen: true
+        }
     }
 });
 
 /* Loop app */
+Vue.component('loop-app', {
+    template: '#loop-app-template',
+    data: function() {
+        return {
+            lists: [
+                {text: 'Text 1'},
+                {text: 'Text 2'},
+                {text: 'Text 3'}
+            ]
+        }
+    }
+});
 
-var loopApp = new Vue ({
-    el: '#loopApp',
+var app = new Vue({
+    el: '#myApp',
     data: {
-        lists: [
-            {text: 'Text 1'},
-            {text: 'Text 2'},
-            {text: 'Text 3'}
-        ]
+        title: 'This is my Vue app'
     }
 });
