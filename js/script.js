@@ -9,6 +9,11 @@ Vue.component('first-app', {
         return {
             message: 'Hello world!'
         }
+    },
+    methods: {
+        reverseMessage: function() {
+            this.message = this.message.split('').reverse().join('');
+        }
     }
 });
 

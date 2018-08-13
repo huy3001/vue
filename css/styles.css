@@ -13000,3 +13000,17 @@ a.text-dark:focus {
 /* Layout */
 
 /* Global styles */
+
+/* line 3, /mnt/e/data/websites/dev.sutunam.com/vue/scss/layout/_global.scss */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+/* line 8, /mnt/e/data/websites/dev.sutunam.com/vue/scss/layout/_global.scss */
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

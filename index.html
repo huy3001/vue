@@ -31,18 +31,24 @@
     <script type="text/x-template" id="first-app-template">
         <div class="firstApp">
             <p>{{message}}</p>
+            <button type="button" class="btn btn-info" v-on:click="reverseMessage">Reverse message</button>
+            <br><br>
         </div>
     </script>
 
     <script type="text/x-template" id="hover-app-template">
         <div class="hoverApp">
-            <p :title="message">Hover me in few seconds to see my title</p>
+            <p v-bind:title="message">Hover me in few seconds to see my title</p>
         </div>
     </script>
 
     <script type="text/x-template" id="condition-app-template">
         <div class="conditionApp">
-            <p v-if="seen">Now you see me</p>
+            <button type="button" class="btn btn-primary" v-on:click="seen = !seen">Click to see me</button>
+            <br><br>
+            <transition name="fade">
+                <p v-if="seen">Now you see me</p>
+            </transition>
         </div>
     </script>
 
