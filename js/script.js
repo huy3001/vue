@@ -7,6 +7,7 @@ Vue.component('first-app', {
     template: '#first-app-template',
     data: function() {
         return {
+            label: 'Enter message here',
             message: 'Hello world!'
         }
     },
@@ -54,6 +55,9 @@ Vue.component('loop-app', {
 var app = new Vue({
     el: '#myApp',
     data: {
-        title: 'This is my Vue app'
+        title: 'This is my training course'
+    },
+    created: function() {
+        console.log('Title is: ' + this.title);
     }
 });

@@ -30,8 +30,14 @@
 
     <script type="text/x-template" id="first-app-template">
         <div class="firstApp">
-            <p>{{message}}</p>
-            <button type="button" class="btn btn-info" v-on:click="reverseMessage">Reverse message</button>
+            <form action="">
+                <div class="form-group">
+                    <label for="messageInput">{{label}}</label>
+                    <input type="text" id="messageInput" class="form-control" v-model="message">
+                    <p class="form-text">{{message}}</p>
+                    <button type="button" class="btn btn-info" v-on:click="reverseMessage">Reverse message</button>
+                </div>
+            </form>
             <br><br>
         </div>
     </script>
