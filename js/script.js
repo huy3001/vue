@@ -88,7 +88,21 @@ Vue.component('props-item', {
 var app = new Vue({
     el: '#myApp',
     data: {
-        title: 'This is my training course'
+        title: 'This is my training course',
+        firstName: 'Huy',
+        lastName: 'Nguyen'
+    },
+    computed: {
+        reverseTitle: function() {
+            // Change value of title
+            this.title = "This is Vue training";
+            // Show reversed title
+            return 'Reversed title is: ' + this.title.split('').reverse().join('');
+        },
+
+        fullName: function() {
+            return 'Developer is: ' + this.firstName + ' ' + this.lastName;
+        }
     },
     created: function() {
         console.log('Title is: ' + this.title);
