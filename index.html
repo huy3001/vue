@@ -25,11 +25,14 @@
             <condition-app></condition-app>
 
             <loop-app></loop-app>
+
+            <props-app></props-app>
         </div>
     </div>
 
     <script type="text/x-template" id="first-app-template">
         <div class="firstApp">
+            <h4>{{title}}</h4>
             <form action="">
                 <div class="form-group">
                     <label for="messageInput">{{label}}</label>
@@ -38,31 +41,46 @@
                     <button type="button" class="btn btn-info" v-on:click="reverseMessage">Reverse message</button>
                 </div>
             </form>
-            <br><br>
+            <br>
         </div>
     </script>
 
     <script type="text/x-template" id="hover-app-template">
         <div class="hoverApp">
+            <h4>{{title}}</h4>
             <p v-bind:title="message">Hover me in few seconds to see my title</p>
+            <br>
         </div>
     </script>
 
     <script type="text/x-template" id="condition-app-template">
         <div class="conditionApp">
+            <h4>{{title}}</h4>
             <button type="button" class="btn btn-primary" v-on:click="seen = !seen">Click to see me</button>
             <br><br>
             <transition name="fade">
                 <p v-if="seen">Now you see me</p>
             </transition>
+            <br>
         </div>
     </script>
 
     <script type="text/x-template" id="loop-app-template">
         <div class="loopApp">
+            <h4>{{title}}</h4>
             <ul>
                 <li v-for="list in lists">{{list.text}}</li>
             </ul>
+            <br>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="props-app-template">
+        <div class="propsApp">
+            <h4>{{title}}</h4>
+            <ol>
+                <props-item v-for="book in books" v-bind:item="book" v-bind:key="book.id"></props-item>
+            </ol>
         </div>
     </script>
 

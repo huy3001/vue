@@ -7,6 +7,7 @@ Vue.component('first-app', {
     template: '#first-app-template',
     data: function() {
         return {
+            title: 'This is fisrt app',
             label: 'Enter message here',
             message: 'Hello world!'
         }
@@ -23,6 +24,7 @@ Vue.component('hover-app', {
     template: '#hover-app-template',
     data: function() {
         return {
+            title: 'This is hover app',
             message: 'You hover on this page in ' + new Date().toLocaleString()
         }
     }
@@ -33,6 +35,7 @@ Vue.component('condition-app', {
     template: '#condition-app-template',
     data: function() {
         return {
+            title: 'This is condition app',
             seen: true
         }
     }
@@ -43,6 +46,7 @@ Vue.component('loop-app', {
     template: '#loop-app-template',
     data: function() {
         return {
+            title: 'This is loop app',
             lists: [
                 {text: 'Text 1'},
                 {text: 'Text 2'},
@@ -50,6 +54,35 @@ Vue.component('loop-app', {
             ]
         }
     }
+});
+
+/* Props app */
+Vue.component('props-app', {
+    template: '#props-app-template',
+    data: function() {
+        return {
+            title: 'This is props app',
+            books: [
+                {   
+                    id: 1,
+                    title: 'Rich dad poor dad'
+                },
+                {
+                    id: 2,
+                    title: 'Never give up'
+                },
+                {
+                    id: 3,
+                    title: 'Love story'
+                }
+            ]
+        }
+    }
+});
+
+Vue.component('props-item', {
+    props: ['item'],
+    template: '<li>{{item.title}}</li>'
 });
 
 var app = new Vue({
