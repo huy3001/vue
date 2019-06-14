@@ -63,9 +63,21 @@
             <h4>{{title}}</h4>
             <button type="button" class="btn btn-primary" v-on:click="seen = !seen">Click to see me</button>
             <br><br>
+            <!-- Add transion effect to this element -->
             <transition name="fade">
-                <p v-if="seen">Now you see me</p>
+                <div v-if="seen" v-bind:class="{'alert-success': seen}" v-bind:style="{color: greenColor}" class="alert" role="alert">
+                    Now you see me!
+                </div>
+                <div v-else v-bind:class="{'alert-danger': !seen}" v-bind:style="{color: redColor}" class="alert" role="alert">
+                    Nothing!
+                </div>
             </transition>
+            <!-- Show or hide many elements with a template -->
+            <template v-if="seen">
+                <strong>I'm a block</strong>
+                <p>This is my content</p>
+                <p><em>Created by: Huy Nguyen</em></p>
+            </template>
             <br>
         </div>
     </script>

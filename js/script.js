@@ -36,6 +36,8 @@ Vue.component('condition-app', {
     data: function() {
         return {
             title: 'This is condition app',
+            greenColor: 'green',
+            redColor: 'red',
             seen: true
         }
     }
