@@ -49,10 +49,15 @@ Vue.component('loop-app', {
     data: function() {
         return {
             title: 'This is loop app',
+            object: {
+                name: 'Huy Nguyen',
+                job: 'Web developer',
+                tech: 'Frontend'
+            },
             lists: [
-                {text: 'Text 1'},
-                {text: 'Text 2'},
-                {text: 'Text 3'}
+                {text: 'What is Lorem Ipsum?'},
+                {text: 'Where does it come from?'},
+                {text: 'Why do we use it?'}
             ]
         }
     }
@@ -85,6 +90,34 @@ Vue.component('props-app', {
 Vue.component('props-item', {
     props: ['item'],
     template: '<li>{{item.title}}</li>'
+});
+
+Vue.component('form-app', {
+    template: '#form-app-template',
+    data: function() {
+        return {
+            title: 'This is form app',
+            message: '',
+            checked: false,
+            choice: [],
+            gender: '',
+            selected: '',
+            options: [
+                {
+                    text: 'One',
+                    value: 1
+                },
+                {
+                    text: 'Two',
+                    value: 2
+                },
+                {
+                    text: 'Three',
+                    value: 3
+                }
+            ]
+        }
+    }
 });
 
 var app = new Vue({
