@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
     <div class="firstApp">
         <h4>{{title}}</h4>
@@ -14,18 +15,19 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
-    data: function() {
-        return {
-            title: 'This is fisrt app',
-            label: 'Enter message here',
-            message: 'Hello world!'
-        }
-    },
-    methods: {
-        reverseMessage: function() {
-            this.message = this.message.split('').reverse().join('');
-        }
-    }
+	data: function() {
+		return {
+			title: 'This is fisrt app',
+			label: 'Enter message here',
+			message: 'Hello world!'
+		}
+	},
+	methods: {
+		reverseMessage: function() {
+			this.message = this.message.split('').reverse().join('')
+		}
+	}
 }
 </script>

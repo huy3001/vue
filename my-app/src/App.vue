@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
 	<div id="app">
 		<div class="container">
@@ -5,16 +6,27 @@
 			<h1>{{title}}</h1>
 			<p><b>{{fullName}}</b></p>
 			<FirstApp/>
+			<HoverApp/>
+			<ConditionApp/>
+			<LoopApp/>
+			<PropsApp/>
+			<FormApp/>	
 		</div>
 	</div>
 </template>
 
 <script>
+/* eslint-disable */
 import FirstApp from './components/FirstApp';
+import HoverApp from './components/HoverApp';
+import ConditionApp from './components/ConditionApp';
+import LoopApp from './components/LoopApp';
+import PropsApp from './components/PropsApp';
+import FormApp from './components/FormApp';
 
 export default {
 	components: {
-		FirstApp
+		FirstApp, HoverApp, ConditionApp, LoopApp, PropsApp, FormApp
 	},
 	data: function() {
 		return {
