@@ -2,8 +2,12 @@
 <template>
     <div class="propsApp">
         <h4>{{title}}</h4>
-        <ol>
-            <PropsItem v-for="book in books" :item="book" :key="book.id"/>
+        <ol :style="{'font-size': fontSize + 'px'}">
+            <PropsItem 
+                v-for="book in books" 
+                :item="book" 
+                :key="book.id" 
+                @change-size="onEnlargeText"/>
         </ol>
         <br>
     </div>
@@ -20,6 +24,7 @@ export default {
     data: function() {
         return {
             title: 'This is props app',
+            fontSize: 14,
             books: [
                 {   
                     id: 1,
@@ -35,6 +40,11 @@ export default {
                 }
             ]
         }
+    },
+    methods: {
+        onEnlargeText: function(enlargeNumber) {
+            this.fontSize += enlargeNumber;
+        }    
     }
 }
 </script>

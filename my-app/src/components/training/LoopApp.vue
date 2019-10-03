@@ -4,11 +4,21 @@
         <h4>{{title}}</h4>
         <ul>
             <!-- Loop an Array -->
-            <li v-for="(list, index) in lists" :key="index">Text-{{index}}: {{list.text}}</li>
+            <li 
+                v-for="(list, index) in lists" 
+                :key="index"
+            >
+                Text-{{index}}: {{list.text}}
+            </li>
         </ul>
         <ul>
             <!-- Loop a Object -->
-            <li v-for="(item, title, index) in object" :key="index">{{index}} - {{title}}: {{item}}</li>
+            <li 
+                v-for="(item, title, index) in object" 
+                :key="index"
+            >
+                {{index}} - {{title}}: {{item}}
+            </li>
         </ul>
         <br>
     </div>

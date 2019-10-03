@@ -17,12 +17,12 @@
 
 <script>
 /* eslint-disable */
-import FirstApp from './components/FirstApp';
-import HoverApp from './components/HoverApp';
-import ConditionApp from './components/ConditionApp';
-import LoopApp from './components/LoopApp';
-import PropsApp from './components/PropsApp';
-import FormApp from './components/FormApp';
+import FirstApp from './components/training/FirstApp';
+import HoverApp from './components/training/HoverApp';
+import ConditionApp from './components/training/ConditionApp';
+import LoopApp from './components/training/LoopApp';
+import PropsApp from './components/training/PropsApp';
+import FormApp from './components/training/FormApp';
 
 export default {
 	components: {
