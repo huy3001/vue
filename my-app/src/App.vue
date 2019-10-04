@@ -3,14 +3,15 @@
 	<div id="app">
 		<div class="container">
 			<img src="./assets/logo.png">
-			<h1>{{title}}</h1>
-			<p><b>{{fullName}}</b></p>
+			<h1>{{ title }}</h1>
+			<p><b>{{ fullName }}</b></p>
 			<FirstApp/>
 			<HoverApp/>
 			<ConditionApp/>
 			<LoopApp/>
 			<PropsApp/>
-			<FormApp/>	
+			<FormApp/>
+			<ToDoList title="To do list"/>
 		</div>
 	</div>
 </template>
@@ -23,10 +24,11 @@ import ConditionApp from './components/training/ConditionApp';
 import LoopApp from './components/training/LoopApp';
 import PropsApp from './components/training/PropsApp';
 import FormApp from './components/training/FormApp';
+import ToDoList from './components/todolist/ToDoList';
 
 export default {
 	components: {
-		FirstApp, HoverApp, ConditionApp, LoopApp, PropsApp, FormApp
+		FirstApp, HoverApp, ConditionApp, LoopApp, PropsApp, FormApp, ToDoList
 	},
 	data: function() {
 		return {
