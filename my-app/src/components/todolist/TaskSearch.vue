@@ -49,7 +49,7 @@ export default {
         /* Reset search action */
         resetSearch: function() {
             this.searchStr = '';
-            this.$emit('reset', '');
+            this.$emit('reset', this.searchStr);
         }
     }
 }

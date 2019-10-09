@@ -25,7 +25,8 @@
             </div>
         </div>
         <!-- Render task list -->
-        <TaskList :list="list"/>
+        <TaskList :list="updateList()"/>
+        {{ list[0].name }}
     </div>
 </template>
 
@@ -60,6 +61,37 @@ export default {
                     level: 1 // 1 - Low, 2 - Normal, 3 - High
                 }
             ],
+            task: {
+                id: '',
+                name: '',
+                level: ''
+            },
+            sort: {
+                item: '',
+                order: ''
+            },
+            sortOption: [
+                {
+                    id: 1,
+                    option: 'Name',
+                    order: 'Asc'
+                },
+                {
+                    id: 2,
+                    option: 'Name',
+                    order: 'Desc'
+                },
+                {
+                    id: 3,
+                    option: 'Level',
+                    order: 'Asc'
+                },
+                {
+                    id: 2,
+                    option: 'Level',
+                    order: 'Desc'
+                }
+            ],
             searchStr: ''
         }
     },
@@ -67,24 +99,25 @@ export default {
         /* Handle search action */
         handleSearch: function(value) {
             this.searchStr = value;
-            this.searchList();
         },
         
         /* Handle reset action */
         handleReset: function(value) {
             this.searchStr = value;
-            this.searchList();
         },
 
         /* Update list after search */
-        searchList: function() {
+        updateList: function() {
+            let list = [...this.list]; // Copy current list
             const search = this.searchStr;
 
             if(search.length) {
-                this.list = this.list.filter(function(item) {
+                list = list.filter(function(item) {
                     return item.name.toLowerCase().indexOf(search) !== -1
-                })
+                });
             }
+
+            return list;
         }
     }
 }
