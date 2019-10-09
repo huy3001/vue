@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped mt-4">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>

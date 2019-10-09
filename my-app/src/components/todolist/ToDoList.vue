@@ -7,14 +7,20 @@
         </div>
         <div class="control">
             <div class="row">
-                <div class="col-4">
-
+                <div class="col-6">
+                    <!-- Render task search -->
+                    <TaskSearch 
+                        @search="handleSearch" 
+                        @reset="handleReset"
+                    />
                 </div>
-                <div class="col-4">
-                    
+                <div class="col-3">
+                    <!-- Render task sort -->
+                    <TaskSort/>
                 </div>
-                <div class="col-4">
-                    
+                <div class="col-3">
+                    <!-- Render task sort -->
+                    <TaskAdd/>
                 </div>
             </div>
         </div>
@@ -26,10 +32,13 @@
 <script>
 /* eslint-disable */
 import TaskList from './TaskList';
+import TaskSearch from './TaskSearch';
+import TaskSort from './TaskSort';
+import TaskAdd from './TaskAdd';
 
 export default {
     components: {
-        TaskList
+        TaskList, TaskSearch, TaskSort, TaskAdd
     },
     props: ['title'],
     data: function() {
@@ -50,7 +59,32 @@ export default {
                     name: 'Product',
                     level: 1 // 1 - Low, 2 - Normal, 3 - High
                 }
-            ]
+            ],
+            searchStr: ''
+        }
+    },
+    methods: {
+        /* Handle search action */
+        handleSearch: function(value) {
+            this.searchStr = value;
+            this.searchList();
+        },
+        
+        /* Handle reset action */
+        handleReset: function(value) {
+            this.searchStr = value;
+            this.searchList();
+        },
+
+        /* Update list after search */
+        searchList: function() {
+            const search = this.searchStr;
+
+            if(search.length) {
+                this.list = this.list.filter(function(item) {
+                    return item.name.toLowerCase().indexOf(search) !== -1
+                })
+            }
         }
     }
 }

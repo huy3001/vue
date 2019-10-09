@@ -1,12 +1,14 @@
 <!-- eslint-disable -->
 <template>
     <tbody>
-        <tr v-for="(item, index) in tasks"
+        <!-- Render task details -->
+        <tr v-for="(item, index) in renderTasks"
             :key="index">
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
-            <td>{{ item.level }}</td>
+            <td v-html="item.level"></td>
             <td>
+                <!-- Render task actions -->
                 <TaskAction/>
             </td>
         </tr>
@@ -27,15 +29,30 @@ export default {
             
         }
     },
+    computed: {
+        renderTasks: function() {
+            let self = this;
+
+            const taskItem =  self.tasks.map(function(item) {
+                return {
+                    id: item.id,
+                    name: item.name,
+                    level: self.levelInfo(item.level)
+                }
+            })
+            
+            return taskItem;
+        }
+    },
     methods: {
         levelInfo: function(level) {
             switch (level) {
                 case 1:
-                    return <span class="badge badge-secondary">Low</span>;
+                    return '<span class="badge badge-secondary">Low</span>';
                 case 3:
-                    return <span class="badge badge-danger">High</span>;
+                    return '<span class="badge badge-danger">High</span>';
                 default:
-                    return <span class="badge badge-success">Normal</span>;
+                    return '<span class="badge badge-success">Normal</span>';
             }
         }
     }
