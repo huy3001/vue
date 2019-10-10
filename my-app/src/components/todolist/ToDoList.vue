@@ -16,7 +16,10 @@
                 </div>
                 <div class="col-3">
                     <!-- Render task sort -->
-                    <TaskSort/>
+                    <TaskSort 
+                        :option="sortOption"
+                        @sort="handleSort"
+                    />
                 </div>
                 <div class="col-3">
                     <!-- Render task sort -->
@@ -25,8 +28,10 @@
             </div>
         </div>
         <!-- Render task list -->
-        <TaskList :list="updateList()"/>
-        {{ list[0].name }}
+        <TaskList 
+            :list="updateList()"
+            @sort="handleSort"
+        />
     </div>
 </template>
 
@@ -67,7 +72,7 @@ export default {
                 level: ''
             },
             sort: {
-                item: '',
+                option: '',
                 order: ''
             },
             sortOption: [
@@ -87,7 +92,7 @@ export default {
                     order: 'Asc'
                 },
                 {
-                    id: 2,
+                    id: 4,
                     option: 'Level',
                     order: 'Desc'
                 }
@@ -106,15 +111,54 @@ export default {
             this.searchStr = value;
         },
 
-        /* Update list after search */
+        /* Handle sort action */
+        handleSort: function(option, order) {
+            this.sort.option = option;
+            this.sort.order = order;
+        },
+
+        /* Handle compare action */
+        handleCompare: function(option, order) {
+            return function(a, b) {
+                if(!a.hasOwnProperty(option) || !b.hasOwnProperty(option)) {
+                    // property doesn't exist on either object
+                    return 0; 
+                }
+
+                const varA = (typeof a[option] === 'string') ? a[option].toLowerCase() : a[option];
+                const varB = (typeof b[option] === 'string') ? b[option].toLowerCase() : b[option];
+
+                let comparison = 0;
+
+                if (varA > varB) {
+                    comparison = 1;
+                } else if (varA < varB) {
+                    comparison = -1;
+                }
+
+                return (
+                    (order === 'desc') ? (comparison * -1) : comparison
+                );
+            }
+        },
+
+        /* Update list after change */
         updateList: function() {
             let list = [...this.list]; // Copy current list
+            let sortOption = this.sort.option;
+            let sortOrder = this.sort.order;
             const search = this.searchStr;
 
+            // Update list after search
             if(search.length) {
                 list = list.filter(function(item) {
                     return item.name.toLowerCase().indexOf(search) !== -1
                 });
+            }
+
+            // Update list after sort
+            if(sortOption.length) {
+                list = list.sort(this.handleCompare(sortOption, sortOrder));
             }
 
             return list;
