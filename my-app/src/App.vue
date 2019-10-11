@@ -5,12 +5,12 @@
 			<img src="./assets/logo.png">
 			<h1>{{ title }}</h1>
 			<p><b>{{ fullName }}</b></p>
-			<FirstApp/>
+			<!-- <FirstApp/>
 			<HoverApp/>
 			<ConditionApp/>
 			<LoopApp/>
 			<PropsApp/>
-			<FormApp/>
+			<FormApp/> -->
 			<ToDoList title="To do list"/>
 		</div>
 	</div>

@@ -10,10 +10,11 @@
                     :key="index">
                     <a 
                         href="#"
-                        :sort-type="item.type"
+                        title="Click to change order"
+                        :sort-option="item.type"
                         :sort-order="item.order"
                         @click="applySort">
-                        {{ item.type }} {{ updateOrder(item.type) }}
+                        {{ item.type }} {{ item.arrow }}
                     </a>
                 </th>
                 <th scope="col">Action</th>
@@ -39,12 +40,14 @@ export default {
                 {
                     id: 1,
                     type: 'Name',
-                    order: 'asc'
+                    order: 'asc',
+                    arrow: ''
                 },
                 {
                     id: 2,
                     type: 'Level',
-                    order: 'asc'
+                    order: 'asc',
+                    arrow: ''
                 }
             ]
         }
@@ -53,42 +56,25 @@ export default {
         /* Handle sort by name */
         applySort: function(event) {
             event.preventDefault();
+
+            let seft = this;
+            const upArrow = '\u{02191}';
+            const downArrow = '\u{02193}';
             
             // Get selected sort type and order
-            const sortType = event.target.getAttribute('sort-type').toLowerCase();
+            const sortOption = event.target.getAttribute('sort-option').toLowerCase();
             const sortOrder = event.target.getAttribute('sort-order').toLowerCase();
-            let orderActive = this.sortType.order;
 
             // Reverse order when selected
-            this.sortType.forEach(function(item, index) {
-                if(item.type === 'name') {
-                    this.sortType[index].order = orderActive === 'asc' ? 'desc' : 'asc'
-                }
-                else {
-                    this.sortType[index].order = orderActive === 'asc' ? 'desc' : 'asc'
+            seft.sortType.forEach(function(item, index) {
+                if(item.type.toLowerCase() === sortOption) {
+                    seft.sortType[index].order = sortOrder === 'asc' ? 'desc' : 'asc';
+                    seft.sortType[index].order === 'asc' ? seft.sortType[index].arrow = upArrow : seft.sortType[index].arrow = downArrow
                 }
             });
 
             // Handle sort action
-            this.$emit('sort', sortType, sortOrder);
-        },
-
-        /* Update list after sort */
-        updateOrder: function(type) {
-            let orderActive = this.sortType.order;
-            const sortType = type.toLowerCase();
-            const upArrow = '\u{02191}';
-            const downArrow = '\u{02193}';
-
-            // Update arrow after click
-            this.sortType.forEach(function(item, index) {
-                if(item.type === sortType) {
-                    this.sortType[index].order === 'asc' ? upArrow : downArrow
-                }
-                else {
-                    this.sortType[index].order === 'asc' ? upArrow : downArrow
-                }
-            });
+            this.$emit('sort', sortOption, sortOrder);
         }
     }
 }
