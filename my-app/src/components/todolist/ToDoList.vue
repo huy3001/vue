@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-3">
                     <!-- Render task sort -->
-                    <TaskAdd/>
+                    <TaskAdd @add-task="handleAddTask"/>
                 </div>
             </div>
         </div>
@@ -142,6 +142,23 @@ export default {
             }
         },
 
+        /* Handle add task action */
+        handleAddTask: function(name, level) {
+            // Copy current list
+            let currentList = [...this.list];
+
+            // Set new task
+            this.task.id = this.list.length + 1;
+            this.task.name = name;
+            this.task.level = level;
+
+            // Update current list with new task
+            let newList = currentList.concat(this.task);
+
+            // Save new list to localStorage
+            localStorage.setItem('newList', JSON.stringify(newList));
+        },
+
         /* Update list after change */
         updateList: function() {
             let list = [...this.list]; // Copy current list
@@ -162,6 +179,17 @@ export default {
             }
 
             return list;
+        }
+    },
+    mounted: function() {
+        // Check if localStarage has newList property
+        if(localStorage.hasOwnProperty('newList')) {
+            // Get new list from localStorage
+            let newList = localStorage.getItem('newList');
+            newList = JSON.parse(newList);
+            
+            // Update new list
+            this.list = [...newList];
         }
     }
 }

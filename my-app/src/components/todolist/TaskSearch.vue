@@ -7,11 +7,12 @@
                 type="text" 
                 placeholder="Search for..." 
                 v-model="searchStr"
+                @keyup.enter="applySearch"
             />
             <button
                 class="btn btn-primary ml-sm-2" 
                 type="button" 
-                @click="applySearch()"
+                @click="applySearch"
             >
                 Go
             </button>
@@ -19,7 +20,7 @@
                 class="btn btn-danger ml-sm-2" 
                 type="button" 
                 v-show="toggleResetButton()" 
-                @click="resetSearch()"
+                @click="resetSearch"
             >
                 Reset
             </button>
@@ -38,6 +39,7 @@ export default {
     methods: {
         /* Apply search action */
         applySearch: function() {
+            // Handle search action
             this.$emit('search', this.searchStr)
         },
 
@@ -48,7 +50,10 @@ export default {
 
         /* Reset search action */
         resetSearch: function() {
+            // Reset value of searchStr
             this.searchStr = '';
+            
+            // Handle reset action
             this.$emit('reset', this.searchStr);
         }
     }

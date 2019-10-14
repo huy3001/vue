@@ -29,7 +29,8 @@
                             type="button" 
                             class="close" 
                             data-dismiss="modal" 
-                            aria-label="Close">
+                            aria-label="Close"
+                            @click="cancelTask">
                             <span aria-hidden="true">
                                 &times;
                             </span>
@@ -45,7 +46,8 @@
                                     type="text" 
                                     class="form-control" 
                                     id="taskName" 
-                                    placeholder="Name"/>
+                                    placeholder="Name"
+                                    v-model="taskName">
                             </div>
                             <div class="form-group">
                                 <label htmlFor="taskLevel">
@@ -58,7 +60,8 @@
                                     min="1" 
                                     max="3" 
                                     aria-describedby="taskLevelHelp" 
-                                    placeholder="Level"/>
+                                    placeholder="Level"
+                                    v-model="taskLevel"/>
                                 <small 
                                     id="taskLevelHelp" 
                                     class="form-text text-muted">
@@ -71,7 +74,8 @@
                         <button 
                             type="button" 
                             class="btn btn-primary" 
-                            data-dismiss="modal">
+                            data-dismiss="modal"
+                            @click="saveTask">
                             Save
                         </button>
                     </div>
@@ -86,7 +90,27 @@
 export default {
     data: function() {
         return {
-            
+            taskName: '',
+            taskLevel: ''
+        }
+    },
+    methods: {
+        saveTask: function() {
+            let newTaskName = this.taskName;
+            let newTaskLevel = parseInt(this.taskLevel);
+
+            // Handle add task action
+            this.$emit('add-task', newTaskName, newTaskLevel);
+
+            // Reset task name and level
+            this.taskName = '';
+            this.taskLevel= '';
+        },
+        
+        cancelTask: function() {
+            // Reset task name and level
+            this.taskName = '';
+            this.taskLevel= '';
         }
     }
 }
