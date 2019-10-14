@@ -47,7 +47,7 @@
                                     class="form-control" 
                                     id="taskName" 
                                     placeholder="Name"
-                                    v-model="taskName">
+                                    v-model="taskName"/>
                             </div>
                             <div class="form-group">
                                 <label htmlFor="taskLevel">
@@ -95,6 +95,7 @@ export default {
         }
     },
     methods: {
+        /* Save new task */
         saveTask: function() {
             let newTaskName = this.taskName;
             let newTaskLevel = parseInt(this.taskLevel);
@@ -107,6 +108,7 @@ export default {
             this.taskLevel= '';
         },
         
+        /* Cancel add new task */
         cancelTask: function() {
             // Reset task name and level
             this.taskName = '';

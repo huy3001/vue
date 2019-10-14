@@ -9,7 +9,12 @@
             <td v-html="item.level"></td>
             <td>
                 <!-- Render task actions -->
-                <TaskAction/>
+                <TaskAction
+                    :tasks="tasks"
+                    :task-id="item.id"
+                    @edit="handleEditTask"
+                    @remove="handleRemoveTask"
+                />
             </td>
         </tr>
     </tbody>
@@ -45,6 +50,7 @@ export default {
         }
     },
     methods: {
+        /* Change layout of level info */
         levelInfo: function(level) {
             switch (level) {
                 case 1:
@@ -54,6 +60,16 @@ export default {
                 default:
                     return '<span class="badge badge-success">Normal</span>';
             }
+        },
+
+        /* Handle edit task action */
+        handleEditTask: function(id, name, level) {
+            this.$emit('edit', id, name, level);
+        },
+
+        /* Handle remove task action */
+        handleRemoveTask: function(id) {
+            this.$emit('remove', id);
         }
     }
 }

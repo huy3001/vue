@@ -31,6 +31,8 @@
         <TaskList 
             :list="updateList()"
             @sort="handleSort"
+            @edit="handleEditTask"
+            @remove="handleRemoveTask"
         />
     </div>
 </template>
@@ -155,8 +157,33 @@ export default {
             // Update current list with new task
             let newList = currentList.concat(this.task);
 
+            // Update original list with new list
+            this.list = [...newList];
+
             // Save new list to localStorage
             localStorage.setItem('newList', JSON.stringify(newList));
+        },
+
+        /* Handle edit task action */
+        handleEditTask: function(id, name, level) {
+
+        },
+
+        /* Handle remove task action */
+        handleRemoveTask: function(id) {
+            // Copy current list
+            let currentList = [...this.list];
+
+            // Filter current list after remove task
+            let updatedList = currentList.filter(function(item) {
+                return item.id !== id;
+            });
+
+            // Update original list with updated list
+            this.list = [...updatedList];
+
+            // Save updated list to localStorage
+            localStorage.setItem('updatedList', JSON.stringify(updatedList));
         },
 
         /* Update list after change */
@@ -190,6 +217,16 @@ export default {
             
             // Update new list
             this.list = [...newList];
+        }
+
+        // Check if localStarage has updatedList property
+        if (localStorage.hasOwnProperty('updatedList')) {
+            // Get updated list from localStorage
+            let updatedList = localStorage.getItem('updatedList');
+            updatedList = JSON.parse(updatedList);
+
+            // Update changed list
+            this.list = [...updatedList];
         }
     }
 }
