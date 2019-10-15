@@ -48,7 +48,9 @@ export default {
     components: {
         TaskList, TaskSearch, TaskSort, TaskAdd
     },
-    props: ['title'],
+    props: {
+        title: String
+    },
     data: function() {
         return {
             list: [
@@ -166,7 +168,7 @@ export default {
 
         /* Handle edit task action */
         handleEditTask: function(id, name, level) {
-
+            
         },
 
         /* Handle remove task action */

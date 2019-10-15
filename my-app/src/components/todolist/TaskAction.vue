@@ -94,7 +94,12 @@
 <script>
 /* eslint-disable */
 export default {
-    props: ['tasks', 'taskId'],
+    props: {
+        tasks: Array,
+        taskId: Number,
+        edit: Function,
+        remove: Function
+    },
     data: function() {
         return {
             editedId: '',
@@ -127,7 +132,7 @@ export default {
 
         /* Save edit task action */ 
         saveEditTask: function() {
-            this.$emit('edit', this.editedId, this.editedName, this.editedLevel);
+            this.edit(this.editedId, this.editedName, this.editedLevel);
         },
 
         /* Remove selected task */
@@ -136,7 +141,7 @@ export default {
             let selectedId = event.target.getAttribute('task-remove');
 
             // Handle remove task action
-            this.$emit('remove', parseInt(selectedId));
+            this.remove(parseInt(selectedId));
         }     
     }
 }

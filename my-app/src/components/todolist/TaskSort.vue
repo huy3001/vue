@@ -34,7 +34,9 @@
 <script>
 /* eslint-disable */
 export default {
-    props: ['option'],
+    props: {
+        option: Array
+    },
     data: function() {
         return {
             isActive: ''

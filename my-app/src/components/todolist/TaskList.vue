@@ -21,7 +21,11 @@
             </tr>
         </thead>
         <!-- Render task items -->
-        <TaskItem :tasks="list"/>
+        <TaskItem 
+            :tasks="list"
+            :edit="handleEditTask"
+            :remove="handleRemoveTask"
+        />
     </table>
 </template>
 
@@ -33,7 +37,9 @@ export default {
     components: {
         TaskItem
     },
-    props: ['list'],
+    props: {
+        list: Array
+    },
     data: function() {
         return {
             sortType: [
@@ -75,6 +81,16 @@ export default {
 
             // Handle sort action
             this.$emit('sort', sortOption, sortOrder);
+        },
+
+        /* Handle edit task action */
+        handleEditTask: function(id, name, level) {
+            this.$emit('edit', id, name, level);
+        },
+
+        /* Handle remove task action */
+        handleRemoveTask: function(id) {
+            this.$emit('remove', id);
         }
     }
 }

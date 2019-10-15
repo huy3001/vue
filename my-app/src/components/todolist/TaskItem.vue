@@ -12,8 +12,8 @@
                 <TaskAction
                     :tasks="tasks"
                     :task-id="item.id"
-                    @edit="handleEditTask"
-                    @remove="handleRemoveTask"
+                    :edit="handleEditTask"
+                    :remove="handleRemoveTask"
                 />
             </td>
         </tr>
@@ -28,7 +28,11 @@ export default {
     components: {
         TaskAction
     },
-    props: ['tasks'],
+    props: {
+        tasks: Array,
+        edit: Function,
+        remove: Function
+    },
     data: function() {
         return {
             
@@ -64,12 +68,12 @@ export default {
 
         /* Handle edit task action */
         handleEditTask: function(id, name, level) {
-            this.$emit('edit', id, name, level);
+            this.edit(id, name, level);
         },
 
         /* Handle remove task action */
         handleRemoveTask: function(id) {
-            this.$emit('remove', id);
+            this.remove(id);
         }
     }
 }
