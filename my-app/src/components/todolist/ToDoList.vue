@@ -152,9 +152,11 @@ export default {
             let currentList = [...this.list];
 
             // Set new task
-            this.task.id = this.list.length + 1;
-            this.task.name = name;
-            this.task.level = level;
+            this.task = {
+                id: this.list.length + 1,
+                name: name,
+                level: level
+            }
 
             // Update current list with new task
             let newList = currentList.concat(this.task);
