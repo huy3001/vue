@@ -39,6 +39,7 @@
 
 <script>
 /* eslint-disable */
+import axios from 'axios';
 import TaskList from './TaskList';
 import TaskSearch from './TaskSearch';
 import TaskSort from './TaskSort';
@@ -53,6 +54,7 @@ export default {
     },
     data: function() {
         return {
+            apiUrl: process.env.ROOT_API,
             list: [
                 {
                     id: 1,
@@ -105,6 +107,19 @@ export default {
         }
     },
     methods: {
+        /* Fetch data from JSON file */
+        fetchData: function() {
+            axios.get(this.apiUrl + 'data.json')
+            .then(function(response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function(error) {
+                // handle error
+                console.log(error);
+            })
+        },
+
         /* Handle search action */
         handleSearch: function(value) {
             this.searchStr = value;

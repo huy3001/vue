@@ -1,0 +1,41 @@
+{
+    "list": [
+        {
+            "id": 1,
+            "name": "Homepage",
+            "level": 3 
+        },
+        {
+            "id": 2,
+            "name": "Catalog",
+            "level": 2
+        },
+        {
+            "id": 3,
+            "name": "Product",
+            "level": 1
+        }
+    ],
+    "sortOption": [
+        {
+            "id": 1,
+            "option": "Name",
+            "order": "Asc"
+        },
+        {
+            "id": 2,
+            "option": "Name",
+            "order": "Desc"
+        },
+        {
+            "id": 3,
+            "option": "Level",
+            "order": "Asc"
+        },
+        {
+            "id": 4,
+            "option": "Level",
+            "order": "Desc"
+        }
+    ]
+}
