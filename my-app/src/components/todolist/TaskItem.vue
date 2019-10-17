@@ -12,10 +12,81 @@
                 <TaskAction
                     :tasks="tasks"
                     :task-id="item.id"
-                    :edit="handleEditTask"
-                    :remove="handleRemoveTask"
+                    :edit="editTask"
+                    :remove="removeTask"
                 />
             </td>
+        </tr>
+        <tr>
+            <div 
+            class="modal fade" 
+            id="editTask" 
+            tabIndex="-1" 
+            role="dialog" 
+            aria-labelledby="editTaskLabel" 
+            aria-hidden="true">
+                <div 
+                    class="modal-dialog" 
+                    role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editTaskLabel">Try to change task info</h5>
+                            <button 
+                                type="button" 
+                                class="close" 
+                                data-dismiss="modal" 
+                                aria-label="Close">
+                                <span aria-hidden="true">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label htmlFor="taskName">
+                                        Task Name
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="taskName" 
+                                        placeholder="Name" 
+                                        v-model="editedName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label htmlFor="taskLevel">
+                                        Task Level
+                                    </label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="taskLevel" 
+                                        min="1" 
+                                        max="3" 
+                                        aria-describedby="taskLevelHelp" 
+                                        placeholder="Level" 
+                                        v-model="editedLevel"/>
+                                    <small 
+                                        id="taskLevelHelp" 
+                                        class="form-text text-muted">
+                                        We have 3 levels: 1 - Low, 2 - Normal, 3 - High
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button 
+                                type="button" 
+                                class="btn btn-primary" 
+                                data-dismiss="modal"
+                                @click="saveEditTask">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
     </tbody>
 </template>
@@ -35,7 +106,9 @@ export default {
     },
     data: function() {
         return {
-            
+            editedId: '',
+            editedName: '',
+            editedLevel: ''
         }
     },
     computed: {
@@ -66,14 +139,40 @@ export default {
             }
         },
 
-        /* Handle edit task action */
-        handleEditTask: function(id, name, level) {
-            this.edit(id, name, level);
+        /* Edit selected task */
+        editTask: function() {
+            let selectedId = event.target.getAttribute('task-edit');
+            let selectedName, selectedLevel;
+            let taskList = this.tasks;
+
+            // Get name and level of selected task
+            if(selectedId.length) {
+                taskList.forEach(function(item) {
+                    if(item.id === parseInt(selectedId)) {
+                        selectedName = item.name;
+                        selectedLevel = item.level;
+                    }
+                })
+            }
+
+            // Set value of edited task by selected task 
+            this.editedId = parseInt(selectedId);
+            this.editedName = selectedName;
+            this.editedLevel = selectedLevel;
         },
 
-        /* Handle remove task action */
-        handleRemoveTask: function(id) {
-            this.remove(id);
+        /* Save edit task action */ 
+        saveEditTask: function() {
+            this.edit(this.editedId, this.editedName, parseInt(this.editedLevel));
+        },
+
+        /* Remove selected task */
+        removeTask: function(event) {
+            // Get selected task
+            let selectedId = event.target.getAttribute('task-remove');
+
+            // Handle remove task action
+            this.remove(parseInt(selectedId));
         }
     }
 }

@@ -164,13 +164,41 @@ export default {
             // Update original list with new list
             this.list = [...newList];
 
+            // Clear localStorage
+            localStorage.clear();
+
             // Save new list to localStorage
             localStorage.setItem('newList', JSON.stringify(newList));
         },
 
         /* Handle edit task action */
         handleEditTask: function(id, name, level) {
-            
+            // Copy current list
+            let currentList = [...this.list];
+
+            // Find index of edited task in list
+            let taskIndex = currentList.findIndex(function(item) {
+                return item.id === id
+            })
+
+            // Set edited task
+            this.task = {
+                id: id,
+                name: name,
+                level: level
+            }
+
+            // Update edited list after edit task
+            currentList.splice(taskIndex, 1, this.task);
+
+            // Update original list with edited list
+            this.list = [...currentList];
+
+            // Clear localStorage
+            localStorage.clear();
+
+            // Save edited list to localStorage
+            localStorage.setItem('editedList', JSON.stringify(currentList));
         },
 
         /* Handle remove task action */
@@ -185,6 +213,9 @@ export default {
 
             // Update original list with updated list
             this.list = [...updatedList];
+
+            // Clear localStorage
+            localStorage.clear();
 
             // Save updated list to localStorage
             localStorage.setItem('updatedList', JSON.stringify(updatedList));
@@ -221,6 +252,16 @@ export default {
             
             // Update new list
             this.list = [...newList];
+        }
+
+        // Check if localStarage has editedList property
+        if (localStorage.hasOwnProperty('editedList')) {
+            // Get updated toDoList from localStorage
+            let editedList = localStorage.getItem('editedList');
+            editedList = JSON.parse(editedList);
+
+            // Update edited list
+            this.list = [...editedList];
         }
 
         // Check if localStarage has updatedList property
