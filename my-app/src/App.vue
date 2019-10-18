@@ -12,6 +12,7 @@
 			<PropsApp/>
 			<FormApp/> -->
 			<ToDoList title="To do list"/>
+			<CoinDesk title="Bitcoin price index"/>
 		</div>
 	</div>
 </template>
@@ -25,10 +26,11 @@ import LoopApp from './components/training/LoopApp';
 import PropsApp from './components/training/PropsApp';
 import FormApp from './components/training/FormApp';
 import ToDoList from './components/todolist/ToDoList';
+import CoinDesk from './components/coindesk/CoinDesk';
 
 export default {
 	components: {
-		FirstApp, HoverApp, ConditionApp, LoopApp, PropsApp, FormApp, ToDoList
+		FirstApp, HoverApp, ConditionApp, LoopApp, PropsApp, FormApp, ToDoList, CoinDesk
 	},
 	data: function() {
 		return {
