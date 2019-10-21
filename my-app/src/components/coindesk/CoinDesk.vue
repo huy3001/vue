@@ -4,7 +4,7 @@
         <div class="title">
             <hr>
             <h3>{{ title }}</h3>
-            <p>Updated: {{ data.time.updated }}</p>
+            <p>Updated: {{ time }}</p>
             <hr>
         </div>
 
@@ -41,7 +41,8 @@ export default {
         return {
             apiCoinDesk: 'https://api.coindesk.com/v1/bpi/currentprice.json',
             data: null,
-            bpi: null            
+            bpi: null,
+            time: ''            
         }
     },
     filters: {
@@ -55,9 +56,10 @@ export default {
         axios.get(this.apiCoinDesk)
             .then(function(response) {
                 // handle success
-                console.log(response);
+                // console.log(response);
                 self.data = response.data;
                 self.bpi = response.data.bpi;
+                self.time = response.data.time.updated;
             })
             .catch(function(error) {
                 // handle error

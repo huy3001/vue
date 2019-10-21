@@ -11,6 +11,7 @@
 			<LoopApp/>
 			<PropsApp/>
 			<FormApp/> -->
+			<VuexApp/>
 			<ToDoList title="To do list"/>
 			<CoinDesk title="Bitcoin price index"/>
 		</div>
@@ -25,12 +26,13 @@ import ConditionApp from './components/training/ConditionApp';
 import LoopApp from './components/training/LoopApp';
 import PropsApp from './components/training/PropsApp';
 import FormApp from './components/training/FormApp';
+import VuexApp from './components/training/VuexApp';
 import ToDoList from './components/todolist/ToDoList';
 import CoinDesk from './components/coindesk/CoinDesk';
 
 export default {
 	components: {
-		FirstApp, HoverApp, ConditionApp, LoopApp, PropsApp, FormApp, ToDoList, CoinDesk
+		FirstApp, HoverApp, ConditionApp, LoopApp, PropsApp, FormApp, ToDoList, CoinDesk, VuexApp
 	},
 	data: function() {
 		return {
